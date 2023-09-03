@@ -22,5 +22,6 @@ def find_by_name_and_breed(session, name, breed):
     return session.query(Dog).filter(Dog.name == name, Dog.breed == breed).first()
 
 def update_breed(session, dog, breed):
-    dog.breed = breed
-    session.commit() 
+    # dog.breed = breed
+    session.query(Dog).filter(Dog.breed == dog.breed).update({Dog.breed: breed})
+    session.commit()
